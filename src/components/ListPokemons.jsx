@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllPokemons } from "../services/getPokemons";
+import SortButtons from "./SortButtons";
 
 export default function ListPokemons() {
   const [pokemons, setPokemons] = useState();
@@ -20,6 +21,8 @@ export default function ListPokemons() {
   return (
     <>
       <h1>all pokemons</h1>
+      <SortButtons pokemons={pokemons} setPokemons={setPokemons} />
+      <br />
       <button onClick={() => setDataUrl(previousPokemons)}>Previous</button>
       <button onClick={() => setDataUrl(nextPokemons)}>Next</button>
       <br />
