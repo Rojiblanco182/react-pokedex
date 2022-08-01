@@ -1,9 +1,8 @@
-import SearchBox from "./SearchBox";
 
 export default function NavBar() {
   return (
     <>
-      <SearchBox />
+      <h1>Pokedex</h1>
     </>
   )
 }
