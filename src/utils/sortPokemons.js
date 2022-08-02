@@ -29,10 +29,10 @@ export const sortNumerically = (pokemons, order = 'lowest-highest') => {
 
   if (order === 'highest-lowest') {
     return sortedArray?.sort((pokemonA, pokemonB) => {
-      if (pokemonB.details?.id > pokemonA.details?.id) {
+      if (pokemonB.id > pokemonA.id) {
         return 1;
       }
-      if (pokemonB.details?.id < pokemonA.details?.id) {
+      if (pokemonB.id < pokemonA.id) {
         return -1;
       }
       return 0;
@@ -40,10 +40,10 @@ export const sortNumerically = (pokemons, order = 'lowest-highest') => {
   }
 
   return sortedArray?.sort((pokemonA, pokemonB) => {
-    if (pokemonA.details?.id > pokemonB.details?.id) {
+    if (pokemonA.id > pokemonB.id) {
       return 1;
     }
-    if (pokemonA.details?.id < pokemonB.details?.id) {
+    if (pokemonA.id < pokemonB.id) {
       return -1;
     }
     return 0;

@@ -1,14 +1,16 @@
 import './App.css';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from './views';
+import PokemonPage from './views/PokemonPage';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Home />
-      </div>
-    </Router>
+    <div className="App">
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/pokemon/:id' element={<PokemonPage />} />
+      </Routes>
+    </div>
   );
 }
 

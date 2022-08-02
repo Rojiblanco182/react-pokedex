@@ -11,7 +11,7 @@ export const getAllPokemons = async (url) => {
         const pokemonDetails = await getPokemonDetails(pokemonId);
         data.results[idx] = {
           ...data.results[idx],
-          details: pokemonDetails
+          ...pokemonDetails
         }
       })
       )
