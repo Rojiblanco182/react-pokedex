@@ -4,6 +4,7 @@ import { getAllPokemons } from "../services/getPokemons";
 import PokemonCard from "./PokemonCard";
 import SearchBox from "./SearchBox";
 import SortButtons from "./SortButtons";
+import { Button } from "@mui/material";
 
 export default function ListPokemons() {
   const [pokemons, setPokemons] = useState();
@@ -11,6 +12,7 @@ export default function ListPokemons() {
   const [nextPokemons, setNextPokemons] = useState();
   const [dataUrl, setDataUrl] = useState(null);
   const [pokemonToSearch, setPokemonToSearch] = useState();
+  const buttonsStyle = { margin: '1%', display: pokemonToSearch && 'none' };
 
   useEffect(() => {
     async function getPokemons(url) {
@@ -27,10 +29,24 @@ export default function ListPokemons() {
       <div className="menu">
         <SearchBox setPokemonToSearch={setPokemonToSearch}/>
         <br />
-        <SortButtons pokemons={pokemons} setPokemons={setPokemons} />
+        <SortButtons pokemons={pokemons} setPokemons={setPokemons} hidden={!!pokemonToSearch}/>
         <br />
-        <button onClick={() => setDataUrl(previousPokemons)}>Previous</button>
-        <button onClick={() => setDataUrl(nextPokemons)}>Next</button>
+        <Button
+          disabled={!previousPokemons}
+          variant="contained"
+          sx={ buttonsStyle }
+          onClick={() => setDataUrl(previousPokemons)}
+        >
+          Previous
+        </Button>
+        <Button
+          disabled={!nextPokemons}
+          variant="contained"
+          sx={ buttonsStyle }
+          onClick={() => setDataUrl(nextPokemons)}
+        >
+          Next
+        </Button>
         <br />
       </div>
       
@@ -44,7 +60,7 @@ export default function ListPokemons() {
       >
         {pokemonToSearch && (
           <>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={4} sm={4} align="center">
               <PokemonCard
                 pokemon={pokemonToSearch}
                 buttonDetails={{ text: 'Details', url: `/pokemon/${pokemonToSearch.id}` }}
@@ -53,9 +69,9 @@ export default function ListPokemons() {
           </>
         )}
         
-        {!pokemonToSearch && pokemons?.map((pokemon) => {
+        {!pokemonToSearch && pokemons?.map((pokemon, idx) => {
           return (
-            <Grid item xs={2} sm={1}>
+            <Grid item xs={2} sm={1} key={`${idx}-grid-item`} align="center">
               <PokemonCard
                 pokemon={pokemon}
                 buttonDetails={{ text: 'Details', url: `/pokemon/${pokemon.id}` }}
@@ -64,6 +80,22 @@ export default function ListPokemons() {
           )
         })}
       </Grid>
+      <Button
+        disabled={!previousPokemons}
+        variant="contained"
+        sx={ buttonsStyle }
+        onClick={() => setDataUrl(previousPokemons)}
+      >
+        Previous
+      </Button>
+      <Button
+        disabled={!nextPokemons}
+        variant="contained"
+        sx={ buttonsStyle }
+        onClick={() => setDataUrl(nextPokemons)}
+      >
+        Next
+      </Button>
     </>
   )
 };

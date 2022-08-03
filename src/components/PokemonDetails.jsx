@@ -41,7 +41,7 @@ const pokemonAbilities = (pokemon) => {
   return (
     <>
       <h3>Abilities</h3>
-      <ul className="feature-list">
+      <ul className="feature-list" key="abilities-list">
       {pokemon?.abilities?.map((ability, idx) => {
         return (
           <>
@@ -58,7 +58,7 @@ const pokemonType = (pokemon) => {
   return (
     <>
       <h3>Type</h3>
-      <ul className="feature-list">
+      <ul className="feature-list" key="types-list">
       {pokemon?.types?.map((type, idx) => {
         return (
           <>
