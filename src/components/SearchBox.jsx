@@ -1,7 +1,11 @@
+import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import { useState } from 'react';
 import { getPokemonDetails } from "../services/getPokemons";
 
 export default function SearchBox({ setPokemonToSearch }) {
-  const searchPokemon = async (userInput) => {
+  const [userInput, setUserInput] = useState();
+  const searchPokemon = async () => {
     if (!userInput) {
       setPokemonToSearch(null);
       return;
@@ -27,9 +31,14 @@ export default function SearchBox({ setPokemonToSearch }) {
           type="text"
           placeholder="Pikachu or 25"
           id="searchBox"
-          onChange={async (e) => {
-          await searchPokemon(e.target.value);
-        }}/>
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          startIcon={<SearchIcon />}
+          sx={{ height: '21px' }}
+          onClick={async () => await searchPokemon()}
+        />
       </div>
     </>
   )
